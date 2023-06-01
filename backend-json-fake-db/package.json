@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-	"startBACK-END": "json-server --watch db.json"
+		"startBACK-END": "json-server --watch db.json"
 	},
 	"keywords": [],
 	"author": "",

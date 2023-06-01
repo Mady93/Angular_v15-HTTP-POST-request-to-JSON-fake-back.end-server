@@ -1,0 +1,35 @@
+
+
+th
+{
+    width: 50%;
+}
+
+td
+{
+    text-align: center;
+}
+
+thead
+{
+    background: skyblue;
+}
+
+tbody tr
+{
+    background: rgb(234, 247, 234);
+}
+
+
+
+tr:nth-child(2n)
+{
+    background: rgb(220, 240, 220) !important;
+}
+
+table
+{
+    width: 300px;
+    border-collapse: collapse;
+    box-shadow: 3px 3px 5px lightgray;
+}

@@ -1,11 +1,9 @@
 <h1>{{title}}</h1>
 
 <div>
-  <div>
+  <div style="margin-bottom: 20px">
     <label>Name: </label>
     <input [(ngModel)]="person.name" />
-  </div>
-  <div>
     <button (click)="addPerson()">Add</button>
   </div>
 </div>
@@ -17,9 +15,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let person of persons;let i=index">
-      <td>{{persons[i].id}}</td>
-      <td>{{persons[i].name}}</td>
+    <tr *ngFor="let person of people;let i=index">
+      <td>{{people[i].id}}</td>
+      <td>{{people[i].name}}</td>
     </tr>
   </tbody>
 </table>

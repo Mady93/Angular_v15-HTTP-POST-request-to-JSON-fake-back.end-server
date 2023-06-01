@@ -7,6 +7,26 @@
     {
       "id": 2,
       "name": "Guido Neri"
+    },
+    {
+      "name": "Mario Rossi",
+      "id": 3
+    },
+    {
+      "name": "guglielmo gialli",
+      "id": 4
+    },
+    {
+      "name": "alberto viola",
+      "id": 5
+    },
+    {
+      "name": "calogero nero",
+      "id": 6
+    },
+    {
+      "name": "umberto verde",
+      "id": 7
     }
   ]
 }

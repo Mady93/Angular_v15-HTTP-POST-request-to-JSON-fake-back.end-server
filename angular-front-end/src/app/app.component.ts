@@ -11,8 +11,9 @@ export class AppComponent implements OnInit {
 
   title = 'httpGet Example';
 
-  person:Person;
-  persons: Person[]=[];
+  people: Person[]=[];
+  person = new Person();
+
 
   constructor(private service: ApiService) { }
 
@@ -20,10 +21,13 @@ export class AppComponent implements OnInit {
     this.refreshPeople();
   }
 
+
   refreshPeople() {
 
     this.service.getPeople().subscribe(data => {
-
+      this.people = data
+    }, err => {
+      alert("error "+err.message);
     });
   }
 
@@ -31,8 +35,7 @@ export class AppComponent implements OnInit {
   addPerson() {
     this.service.addPerson(this.person)
       .subscribe(data => {
-
-
+        this.refreshPeople();
       });
   }
 }

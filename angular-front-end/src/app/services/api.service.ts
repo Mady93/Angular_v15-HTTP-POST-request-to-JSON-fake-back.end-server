@@ -17,8 +17,14 @@ export class ApiService {
       } */
 
     getPeople(): Observable<Person[]> {
-        return this.http.get<Person[]>(this.baseURL + 'people');
-    }
+        return this.http.get<Person[]>(this.baseURL + 'people').pipe(
+            catchError((err) => {
+                console.error(err);
+                throw err;
+            }),
+        )
+    }; 
+    
 
     //Risposta completa
     /* addPerson(person: Person): Observable<any> {
@@ -49,11 +55,11 @@ export class ApiService {
   } */
 
     //Stringa come tipo di risposta
-    /*  addPerson(person: Person): Observable<String> {
+    /*  addPerson(person: Person): Observable<Person> {
         const headers = { 'content-type': 'application/json' };
         const body = JSON.stringify(person);
 
-        return this.http.post(this.baseURL + 'people', body, {
+        return this.http.post<Person>(this.baseURL + 'people', body, {
             headers: headers, responseType: "text"
         });
     }  */
@@ -76,8 +82,8 @@ export class ApiService {
 
 
 
-    //mandal'errore al componente attraverso throw err
-    /*  addPerson(person: Person): Observable<Person> {
+    //manda l'errore al componente attraverso throw err
+      addPerson(person: Person): Observable<Person> {
          const headers = { 'content-type': 'application/json' }
          const body = JSON.stringify(person);
  
@@ -87,7 +93,7 @@ export class ApiService {
                  throw err;
              }),
          )
-     }; */
+     }; 
 
 
     // map per trasformare i valori della risposta
