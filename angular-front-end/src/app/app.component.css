@@ -1,13 +1,16 @@
-
-
 th
 {
-    width: 50%;
+    width: auto;
 }
 
 td
 {
     text-align: center;
+}
+
+tr td:first-child input
+{
+    width: 20px
 }
 
 thead
@@ -21,7 +24,6 @@ tbody tr
 }
 
 
-
 tr:nth-child(2n)
 {
     background: rgb(220, 240, 220) !important;
@@ -33,3 +35,82 @@ table
     border-collapse: collapse;
     box-shadow: 3px 3px 5px lightgray;
 }
+
+
+td input
+{
+    background: transparent;
+    border: none;
+}
+
+.icon
+{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.delete
+{
+    background: url("https://cdn-icons-png.flaticon.com/512/3405/3405244.png") !important;
+    background-size: cover !important;
+}
+
+.save
+{
+    background: url("https://icons.veryicon.com/png/o/miscellaneous/utility/save-44.png") !important;
+    background-size: cover !important;
+}
+
+.side
+{
+    display: flex;
+    position: relative;
+}
+
+#error
+{
+    border: 2px solid red;
+    padding: 2px;
+    height: 20px;
+    margin-left: 20px;
+    border-radius: 2px;
+    box-sizing:content-box;
+    box-shadow: 3px 3px 2px lightgray;
+}
+
+
+
+
+
+
+
+
+
+
+.is-invalid
+{
+    border: 2px solid rgb(211, 48, 48);
+    background-color: #ffffff;
+}
+
+.is-valid
+{
+    border: 2px solid rgb(0, 211, 46);
+    background-color:rgb(173, 223, 173);
+}
+
+.error 
+{
+    color: rgb(0, 0, 0);
+    border: 2px solid red;
+    background-color: rgb(218, 199, 199);
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  form
+  {
+        display: inline-block;
+  }

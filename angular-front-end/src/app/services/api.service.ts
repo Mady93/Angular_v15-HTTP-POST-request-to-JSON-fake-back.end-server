@@ -26,7 +26,7 @@ export class ApiService {
     }; 
     
 
-    //Risposta completa
+ //                        Risposta completa
     /* addPerson(person: Person): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(person);
@@ -36,7 +36,7 @@ export class ApiService {
         })
     } */
 
-    //Ascoltare gli eventi di avanzamento con { observe: 'events', reportProgress: true }
+  //         Ascoltare gli eventi di avanzamento con { observe: 'events', reportProgress: true }
     /* addPerson(person: Person): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(person);
@@ -46,7 +46,7 @@ export class ApiService {
         });
     } */
 
-    //Risposta fortemente tipizzata
+    //                      Risposta fortemente tipizzata
     /*  addPerson(person: Person): Observable<Person> {
       const headers = { 'content-type': 'application/json' }
       const body = JSON.stringify(person);
@@ -54,7 +54,7 @@ export class ApiService {
       return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers })
   } */
 
-    //Stringa come tipo di risposta
+   //                    Stringa come tipo di risposta
     /*  addPerson(person: Person): Observable<Person> {
         const headers = { 'content-type': 'application/json' };
         const body = JSON.stringify(person);
@@ -64,8 +64,8 @@ export class ApiService {
         });
     }  */
 
-    /* serializzazione dell'oggetto person in una stringa JSON nel corpo della richiesta 
-         e la risposta JSON restituita dal server viene automaticamente interpretata come
+    /*      serializzazione dell'oggetto person in una stringa JSON nel corpo della richiesta 
+            e la risposta JSON restituita dal server viene automaticamente interpretata come
             un oggetto JavaScript grazie all'impostazione di responseType : "json" */
     /* addPerson(person: Person): Observable<Person> {
        const headers = { 'content-type': 'application/json' };
@@ -77,15 +77,13 @@ export class ApiService {
    }  */
 
 
-
-    //GESTIONE DEGLI ERRORI:
-
+   //                             GESTIONE DEGLI ERRORI:
 
 
-    //manda l'errore al componente attraverso throw err
-      addPerson(person: Person): Observable<Person> {
+       //                  manda l'errore al componente attraverso throw err
+      addPerson(name: string): Observable<Person> {
          const headers = { 'content-type': 'application/json' }
-         const body = JSON.stringify(person);
+         const body = JSON.stringify({name: name});
  
          return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers }).pipe(
              catchError((err) => {
@@ -95,8 +93,7 @@ export class ApiService {
          )
      }; 
 
-
-    // map per trasformare i valori della risposta
+    //                      map per trasformare i valori della risposta
     /* addPerson(person: Person): Observable<Person> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(person);
@@ -115,9 +112,7 @@ export class ApiService {
     }
  */
 
-
-
-    /*                                        Query paramiter:
+    /*                                        Query param:
     Invia una richiesta GET all'URL http://localhost:3000/people?id=person.id&name=person.name*/
     /*     addPerson(person: Person): Observable<Person> {
             const headers = { 'content-type': 'application/json' };
@@ -132,8 +127,7 @@ export class ApiService {
             });
         } */
 
-
-    /*                    Query paramiter modo alternativo:
+    /*                       Query param modo alternativo:
     Invia una richiesta GET all'URL http://localhost:3000/people?id=person.id&name=person.name*/
     /* addPerson(person: Person): Observable<Person> {
         const headers = { 'content-type': 'application/json' };
@@ -143,7 +137,21 @@ export class ApiService {
         (this.baseURL + 'people?id=person.id&name=person.name', body, { 'headers': headers });
     } */
     
+    deletePerson(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.baseURL}people/${id}`).pipe(
+          catchError((err) => {
+            console.error(err);
+            throw err;
+          })
+        );
+      }
 
-
+      updatePerson(person: Person): Observable<void> {
+            const headers = { 'content-type': 'application/json' };
+            const body = JSON.stringify({name: person.name});
+            const addr = this.baseURL + 'people/'+person.id;
+            return this.http.put<void>(addr, body, {headers: headers});
+      }
+      
 }
 

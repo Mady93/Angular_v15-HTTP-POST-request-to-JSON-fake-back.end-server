@@ -1,15 +1,7 @@
 {
   "people": [
     {
-      "id": 1,
-      "name": "Mario Rossi"
-    },
-    {
-      "id": 2,
-      "name": "Guido Neri"
-    },
-    {
-      "name": "Mario Rossi",
+      "name": "Mario Dragotti",
       "id": 3
     },
     {
@@ -17,16 +9,40 @@
       "id": 4
     },
     {
-      "name": "alberto viola",
-      "id": 5
-    },
-    {
-      "name": "calogero nero",
+      "name": "giancarlo magalli",
       "id": 6
     },
     {
       "name": "umberto verde",
       "id": 7
+    },
+    {
+      "name": "Mario Rossi",
+      "id": 8
+    },
+    {
+      "id": 10,
+      "name": "pippo baudo"
+    },
+    {
+      "name": "fantozzi ugo",
+      "id": 11
+    },
+    {
+      "name": "me lavo domenico",
+      "id": 12
+    },
+    {
+      "name": "COZZA Tina",
+      "id": 13
+    },
+    {
+      "name": "BRONTOLONE Procolo",
+      "id": 14
+    },
+    {
+      "name": "Amabile CUSCINO",
+      "id": 15
     }
   ]
 }

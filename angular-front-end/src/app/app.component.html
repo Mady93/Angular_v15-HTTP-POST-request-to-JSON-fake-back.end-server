@@ -1,23 +1,67 @@
 <h1>{{title}}</h1>
 
-<div>
+<div style="display: flex;">
   <div style="margin-bottom: 20px">
-    <label>Name: </label>
-    <input [(ngModel)]="person.name" />
-    <button (click)="addPerson()">Add</button>
+
+    <form #person="ngForm" novalidate (ngSubmit)="addPerson(person)">
+      <label for="name">Name: </label>
+      <input #name="ngModel" [(ngModel)]="person.name" id="name" name="name" pattern="[a-zA-Z\s]+$" minlength="5"
+        maxlength="25" [ngClass]="{'is-invalid': name.invalid && name.dirty,'is-valid': name.valid && name.dirty}"
+        required />
+
+      <button type="submit">Add</button>
+    </form>
+
+  </div>
+  <div *ngIf="errorInsert.msg != ''" class="error">
+    {{errorInsert | json}}
+  </div>
+
+</div>
+
+<div *ngIf="!name.valid && (name.dirty || name.touched)" [ngClass]="'error'">
+
+  <div *ngIf="name.errors['required'] && name.touched">
+    Name is required!
+  </div>
+
+  <div *ngIf="name.errors['minlength'] && name.touched">
+    Name minimum lenghth is {{name.errors['minlength'].requiredLength}}
+  </div>
+
+  <div *ngIf="name.errors['pattern'] && name.touched">
+    Name pattern is {{name.errors['pattern'].requiredPattern}}
+    Inserire lettere da aA - zZ + spazzi vuoti!
   </div>
 </div>
-<table class='table'>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let person of people;let i=index">
-      <td>{{people[i].id}}</td>
-      <td>{{people[i].name}}</td>
-    </tr>
-  </tbody>
-</table>
+
+<br>
+
+<div class="side">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="clickTable(person.id, ele)" *ngFor="let person of people;let i=index" #ele>
+
+        <td><input type="text" value="{{person.id}}" readonly /></td>
+        <td><input type="text" [(ngModel)]="person.name" (keypress)="onlyChr($event)" /></td>
+        <td>
+          <input type="button" (click)="delPerson(person.id)" class="icon delete" />
+          <input type="button" (click)="updPerson(person)" class="icon save" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div [hidden]="error==''" id="error">
+    {{error}}
+    {{errorMsg}}
+  </div>
+
+</div>
