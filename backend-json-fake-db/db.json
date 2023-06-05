@@ -1,7 +1,7 @@
 {
   "people": [
     {
-      "name": "Mario Dragotti",
+      "name": "Mario Dragozzi",
       "id": 3
     },
     {
@@ -29,20 +29,12 @@
       "id": 11
     },
     {
-      "name": "me lavo domenico",
+      "name": "pippo",
       "id": 12
     },
     {
-      "name": "COZZA Tina",
+      "name": "pippos",
       "id": 13
-    },
-    {
-      "name": "BRONTOLONE Procolo",
-      "id": 14
-    },
-    {
-      "name": "Amabile CUSCINO",
-      "id": 15
     }
   ]
 }

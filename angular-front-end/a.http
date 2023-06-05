@@ -3,5 +3,8 @@
 
 GET http://localhost:3000/people
 
+###
+
+DELETE http://localhost:3000/people/14
 
 

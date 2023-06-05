@@ -13,9 +13,20 @@
     </form>
 
   </div>
-  <div *ngIf="errorInsert.msg != ''" class="error">
-    {{errorInsert | json}}
+<!-- 
+  <div *ngIf="people.length==0" class="error">
+    {{errorInsert.msg}}
+  </div>  -->
+
+  <div *ngIf="errorInsert.msg!=''" class="error">
+    {{ errorInsert.msg }}
   </div>
+  
+  
+  
+
+  
+  
 
 </div>
 
@@ -38,6 +49,7 @@
 <br>
 
 <div class="side">
+
   <table class='table'>
     <thead>
       <tr>

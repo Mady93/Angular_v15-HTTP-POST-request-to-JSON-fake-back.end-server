@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Person } from '../models/person';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })
@@ -15,18 +15,30 @@ export class ApiService {
     /* getPeople(): Observable<Person[]> {
         return this.http.get<Person[]>(`${this.baseURL}people`);
       } */
-
     getPeople(): Observable<Person[]> {
         return this.http.get<Person[]>(this.baseURL + 'people').pipe(
-            catchError((err) => {
-                console.error(err);
-                throw err;
+            catchError((err: HttpErrorResponse): Observable<Person[]> => {
+                switch (err.status) {
+                    case 404:
+                        return throwError(() => new Error('User not found: ' + err.status));
+                    case 401:
+                        return throwError(() => new Error('Unauthorized: ' + err.status));
+                    case 403:
+                        return throwError(() => new Error('Forbidden: ' + err.status));
+                    case 500:
+                        return throwError(() => new Error('Internal Server Error: ' + err.status));
+                    default:
+                        return throwError(() => new Error('An error occurred: ' + err.status));
+                }
             }),
-        )
-    }; 
-    
+        );
+    }
 
- //                        Risposta completa
+
+
+
+
+    //                        Risposta completa
     /* addPerson(person: Person): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(person);
@@ -36,7 +48,7 @@ export class ApiService {
         })
     } */
 
-  //         Ascoltare gli eventi di avanzamento con { observe: 'events', reportProgress: true }
+    //         Ascoltare gli eventi di avanzamento con { observe: 'events', reportProgress: true }
     /* addPerson(person: Person): Observable<any> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(person);
@@ -54,7 +66,7 @@ export class ApiService {
       return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers })
   } */
 
-   //                    Stringa come tipo di risposta
+    //                    Stringa come tipo di risposta
     /*  addPerson(person: Person): Observable<Person> {
         const headers = { 'content-type': 'application/json' };
         const body = JSON.stringify(person);
@@ -77,21 +89,42 @@ export class ApiService {
    }  */
 
 
-   //                             GESTIONE DEGLI ERRORI:
+    //                             GESTIONE DEGLI ERRORI:
 
 
-       //                  manda l'errore al componente attraverso throw err
-      addPerson(name: string): Observable<Person> {
-         const headers = { 'content-type': 'application/json' }
-         const body = JSON.stringify({name: name});
- 
-         return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers }).pipe(
-             catchError((err) => {
-                 console.error(err);
-                 throw err;
-             }),
-         )
-     }; 
+    //                  manda l'errore al componente attraverso throw err
+    addPerson(name: string): Observable<Person> {
+        const headers = { 'content-type': 'application/json' }
+        const body = JSON.stringify({ name: name });
+
+        if (name=="" || name==undefined || name==null)
+        {
+            return throwError(() => new HttpErrorResponse({status: 406, statusText: "campo vuoto"}));
+        }
+
+        return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                switch (error.status) {
+                    case 404:
+                        return throwError(() => new Error('User not found: ' + error.status));
+                    case 401:
+                        return throwError(() => new Error('Unauthorized: ' + error.status));
+                    case 403:
+                        return throwError(() => new Error('Forbidden: ' + error.status));
+                    case 500:
+                        return throwError(() => new Error('Internal Server Error: ' + error.status));
+                    default:
+                        return throwError(() => new Error('An error occurred: ' + error.status));
+                }
+            }),
+        );
+    };
+
+
+
+
+
+
 
     //                      map per trasformare i valori della risposta
     /* addPerson(person: Person): Observable<Person> {
@@ -136,22 +169,48 @@ export class ApiService {
         return this.http.post<Person>
         (this.baseURL + 'people?id=person.id&name=person.name', body, { 'headers': headers });
     } */
-    
-    deletePerson(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.baseURL}people/${id}`).pipe(
-          catchError((err) => {
-            console.error(err);
-            throw err;
-          })
-        );
-      }
 
-      updatePerson(person: Person): Observable<void> {
-            const headers = { 'content-type': 'application/json' };
-            const body = JSON.stringify({name: person.name});
-            const addr = this.baseURL + 'people/'+person.id;
-            return this.http.put<void>(addr, body, {headers: headers});
-      }
-      
+    deletePerson(id: number): Observable<void> {
+
+        return this.http.delete<void>(`${this.baseURL}people/${id}`).pipe(
+            catchError((error: HttpErrorResponse) => {
+                switch (error.status) {
+                    case 404:
+                        return throwError(() => new Error('User not found: ' + error.status));
+                    case 401:
+                        return throwError(() => new Error('Unauthorized: ' + error.status));
+                    case 403:
+                        return throwError(() => new Error('Forbidden: ' + error.status));
+                    case 500:
+                        return throwError(() => new Error('Internal Server Error: ' + error.status));
+                    default:
+                        return throwError(() => new Error('An error occurred: ' + error.status));
+                }
+            }),
+        );
+    }
+
+    updatePerson(person: Person): Observable<void> {
+        const headers = { 'content-type': 'application/json' };
+        const body = JSON.stringify({ name: person.name });
+        const addr = this.baseURL + 'people/' + person.id;
+        return this.http.put<void>(addr, body, { headers: headers }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                switch (error.status) {
+                    case 404:
+                        return throwError(() => new Error('User not found: ' + error.status));
+                    case 401:
+                        return throwError(() => new Error('Unauthorized: ' + error.status));
+                    case 403:
+                        return throwError(() => new Error('Forbidden: ' + error.status));
+                    case 500:
+                        return throwError(() => new Error('Internal Server Error: ' + error.status));
+                    default:
+                        return throwError(() => new Error('An error occurred: ' + error.status));
+                }
+            }),
+        );
+    }
+
 }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
 import { Person } from './models/person';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit {
   errorHeight: number = 0;
   currentId: number = 0;
 
-  errorInsert: any = { status: 0, msg: "" };
+  errorInsert: any = {status: 0,msg: ''};
+  isAddClicked = false;
+  
 
   constructor(private service: ApiService) { }
 
@@ -28,19 +31,28 @@ export class AppComponent implements OnInit {
     let ret = { status: err.status, msg: '' }
     switch (err.status) {
       case 400:
-        ret.msg = "Bad Request";
+        ret.msg = 'Bad Request: '+ err.status;
+        break;
+      case 403:
+        ret.msg = 'Forbidden: '+ err.status;
         break;
       case 404:
-        ret.msg = "Not Found";
+        ret.msg = 'User not found: '+ err.status;
+        break;
+      case 406:
+        ret.msg = 'Campo vuoto: '+ err.status;
         break;
       case 500:
-        ret.msg = "Internal Server Error";
+        ret.msg = 'Internal Server Error: ' + err.status;
         break;
       default:
-        ret.msg = "Errore non mappato";
+        ret.msg = 'An error occurred: ' + err.status;
     }
     return ret;
   }
+
+
+
 
   //blocco numeri e caratteri speciali nell'input sulla tabella
   onlyChr(evt: KeyboardEvent) {
@@ -61,7 +73,8 @@ export class AppComponent implements OnInit {
       next: (data: Person[]) => {
         this.people = data;
       },
-      error: (err: Error) => {
+      error: (err: Error) => { 
+        this.errorInsert = this.switchCase(err);
       },
       complete: () => {
       }
@@ -69,29 +82,43 @@ export class AppComponent implements OnInit {
   }
 
   //controllo sul campo input name => form
-  addPerson(control: any) {
-    if (control.invalid) return;
+   addPerson(control: any) {
+    /*
+    if (control.invalid)
+    {
+      this.errorInsert 
+      return;
+    }
+    */
+
     this.service.addPerson(control.name)
       .subscribe({
         next: () => {
+          this.isAddClicked = true;
           this.refreshPeople();
           control.reset();
         },
-        error: (err: any) => {
-          this.errorInsert = this.switchCase(err);
+        error: (err: HttpErrorResponse) => {
+          this.errorInsert = this.switchCase(err); 
         },
         complete: () => {
 
         }
       });
-  }
+      
+  } 
+
+
 
 //gestione dlla posizione dell'errore in base all'id
   clickTable(id, ele) {
+    /*
     if (this.currentId != id) {
       this.currentId = id;
       this.error = "";
     }
+    */
+    this.error = "";
     this.errorHeight = ele.offsetTop;
     (<HTMLDivElement>document.querySelector("#error")).style.marginTop = "" + (this.errorHeight) + "px";
   }
@@ -111,10 +138,13 @@ export class AppComponent implements OnInit {
 
   updPerson(person: Person) {
     if (person.name == "") {
-      this.error = "Error: parametro vuoto";
+      debugger;
+      setTimeout(function(){
+        this.error = "Error: parametro vuoto";
+      },1000);
       return;
     }
-    //debugger;
+   
     this.service.updatePerson(person).subscribe({
       next: () => {
       },
