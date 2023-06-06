@@ -69,8 +69,11 @@ export class PersonEditComponent implements OnInit{
   }
 
 
+/* Si puo utilizzare window.confirm() nella callback next dell'observable 
+se si desidera mostrare la finestra di conferma dopo che l'operazione di 
+aggiornamento è stata completata */ 
 
-  submit(form: FormGroup) {
+  /* submit(form: FormGroup) {
     form.value["id"] = this.id;
     this.service.updatePerson(form.value).subscribe({
       next: () => {
@@ -82,8 +85,30 @@ export class PersonEditComponent implements OnInit{
   
       }
     });
+  } */
+
+
+
+
+  /*  la finestra di conferma verrà mostrata prima di eseguire l'operazione
+   di aggiornamento. Se l'utente conferma, verrà eseguito il codice all'interno
+    del blocco if e l'operazione di navigazione verso "/person-list" verrà eseguita.
+     Altrimenti, se l'utente annulla, il codice nel blocco if verrà ignorato e 
+     l'operazione di aggiornamento non verrà eseguita. */
+     
+  submit(form: FormGroup) {
+    form.value["id"] = this.id;
+  
+    if (window.confirm("Are you sure you want to update this person?")) {
+      this.service.updatePerson(form.value).subscribe({
+        next: () => {
+          this.router.navigate(["/person-list"]);
+        },
+        error: (err: any) => {
+  
+        }
+      });
+    }
   }
-
-
 
 }
