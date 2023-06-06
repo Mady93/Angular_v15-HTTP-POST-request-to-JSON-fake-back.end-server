@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+
+    <form class="w-25 p-3" [formGroup]="form" novalidate (ngSubmit)="submit(form)">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="firstname" formControlName="firstname" [ngClass]="{
+                'is-invalid': form.get('firstname').invalid && form.get('firstname').dirty,
+                'is-valid': form.get('firstname').valid && form.get('firstname').dirty
+                }" />
+        </div>
+
+        <div *ngIf="!form.get('firstname').valid && (form.get('firstname').dirty || form.get('firstname').touched)"
+            [ngClass]="'error'">
+
+            <div *ngIf="form.get('firstname').errors['required'] && form.get('firstname').touched">
+                First Name is required!
+            </div>
+
+            <div *ngIf="form.get('firstname').errors['minlength'] && form.get('firstname').touched">
+                First Name minimum lenghth is {{form.get('firstname').errors['minlength'].requiredLength}}
+            </div>
+
+            <div *ngIf="form.get('firstname').errors['pattern'] && form.get('firstname').touched">
+                First Name pattern is {{form.get('firstname').errors['pattern'].requiredPattern}}
+                <br>
+                Inserire lettere da aA - zZ e spazzi vuoti!
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="lastname" formControlName="lastname" [ngClass]="{
+                'is-invalid': form.get('lastname').invalid && form.get('lastname').dirty,
+                'is-valid': form.get('lastname').valid && form.get('lastname').dirty
+                }" />
+        </div>
+        <div *ngIf="!form.get('lastname').valid && (form.get('lastname').dirty || form.get('lastname').touched)"
+            [ngClass]="'error'">
+
+            <div *ngIf="form.get('lastname').errors['required'] && form.get('lastname').touched">
+                Last Name is required!
+            </div>
+
+            <div *ngIf="form.get('lastname').errors['minlength'] && form.get('lastname').touched">
+                Last Name minimum lenghth is {{form.get('lastname').errors['minlength'].requiredLength}}
+            </div>
+
+            <div *ngIf="form.get('lastname').errors['pattern'] && form.get('lastname').touched">
+                Last Name pattern is {{form.get('lastname').errors['pattern'].requiredPattern}}
+                <br>
+                Inserire lettere da aA - zZ e spazzi vuoti!
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="email" formControlName="email" [ngClass]="{
+                'is-invalid': form.get('email').invalid && form.get('email').dirty,
+                'is-valid': form.get('email').valid && form.get('email').dirty
+                }" />
+        </div>
+        <div *ngIf="!form.get('email').valid && (form.get('email').dirty || form.get('email').touched)"
+            [ngClass]="'error'">
+
+            <div *ngIf="form.get('email').errors['required'] && form.get('email').touched">
+                Email is required!
+            </div>
+
+            <div *ngIf="form.get('email').errors['pattern'] && form.get('email').touched">
+                Email pattern is {{form.get('email').errors['pattern'].requiredPattern}}
+                <br>
+                Enter characters from
+                a-A to z-Z , special characters._%+- and number 0-9
+
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button style="width: 100%;" type="submit" class="btn btn-primary">Salva</button>
+        </div>
+
+        <div>
+            <button type="button" routerLink="/person-list">Back to list</button>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,33 @@
+
+
+form > *
+{
+    margin: 5px;
+}
+
+form
+{
+    padding: 5px;
+    width: 50%;
+}
+
+.is-invalid
+{
+    border: 2px solid rgb(211, 48, 48);
+    background-color: #ffffff;
+}
+
+.is-valid
+{
+    border: 2px solid rgb(0, 211, 46);
+    background-color:rgb(173, 223, 173);
+}
+
+.error 
+{
+    color: rgb(0, 0, 0);
+    border: 2px solid red;
+    background-color: rgb(218, 199, 199);
+    display: inline-block;
+    margin-bottom: 10px;
+  }

@@ -1,40 +1,40 @@
 {
   "people": [
     {
-      "name": "Mario Dragozzi",
-      "id": 3
+      "firstname": "Mariolini",
+      "lastname": "Dragozzi",
+      "email": "mariodragozzi@gmail.com",
+      "id": 1
     },
     {
-      "name": "guglielmo gialli",
+      "id": 2,
+      "firstname": "Pippo",
+      "lastname": "Baudo",
+      "email": "pippo@gmail.com"
+    },
+    {
+      "firstname": "calogero",
+      "lastname": "bianconi",
+      "email": "cal.bi@hotmail.com",
       "id": 4
     },
     {
-      "name": "giancarlo magalli",
+      "firstname": "pippo",
+      "lastname": "pippellino",
+      "email": "pippellino@gmail.com",
+      "id": 5
+    },
+    {
+      "firstname": "ciaoo",
+      "lastname": "ciaooo",
+      "email": "ciao@yahoo.com",
       "id": 6
     },
     {
-      "name": "umberto verde",
+      "firstname": "salve",
+      "lastname": "salvino",
+      "email": "what@gmail.com",
       "id": 7
-    },
-    {
-      "name": "Mario Rossi",
-      "id": 8
-    },
-    {
-      "id": 10,
-      "name": "pippo baudo"
-    },
-    {
-      "name": "fantozzi ugo",
-      "id": 11
-    },
-    {
-      "name": "pippo",
-      "id": 12
-    },
-    {
-      "name": "pippos",
-      "id": 13
     }
   ]
 }

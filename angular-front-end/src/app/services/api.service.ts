@@ -32,10 +32,31 @@ export class ApiService {
                 }
             }),
         );
+        
     }
 
 
-
+    getPersonById(id: number): Observable<Person[]>
+    {
+        const headers = { 'content-type': 'application/json' };
+        const params = new HttpParams().set("id", id);
+        return this.http.get<Person[]>(this.baseURL + 'people', {headers: headers, params: params}).pipe(
+            catchError((err: HttpErrorResponse): Observable<Person[]> => {
+                switch (err.status) {
+                    case 404:
+                        return throwError(() => new Error('User not found: ' + err.status));
+                    case 401:
+                        return throwError(() => new Error('Unauthorized: ' + err.status));
+                    case 403:
+                        return throwError(() => new Error('Forbidden: ' + err.status));
+                    case 500:
+                        return throwError(() => new Error('Internal Server Error: ' + err.status));
+                    default:
+                        return throwError(() => new Error('An error occurred: ' + err.status));
+                }
+            }),
+        );
+    }
 
 
     //                        Risposta completa
@@ -93,6 +114,8 @@ export class ApiService {
 
 
     //                  manda l'errore al componente attraverso throw err
+
+    /*
     addPerson(name: string): Observable<Person> {
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify({ name: name });
@@ -119,7 +142,47 @@ export class ApiService {
             }),
         );
     };
+    */
 
+
+
+    /* sostituire Observable<Person> con Observable<void> */
+    addPerson(person: Person): Observable<Person>
+    {
+
+        const headers = { 'content-type': 'application/json' }
+        const body = JSON.stringify(person);
+
+        if (person.firstname=="" ||person.firstname==undefined || person.firstname==null 
+        || person.lastname=="" ||person.lastname==undefined || person.lastname==null 
+        || person.email=="" ||person.email==undefined || person.email==null)
+        {
+            return throwError(() => new HttpErrorResponse({status: 406, statusText: "Not Acceptable"}));
+        }
+
+
+
+
+
+
+        return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                switch (error.status) {
+                    case 404:
+                        return throwError(() => new Error('User not found: ' + error.status));
+                    case 401:
+                        return throwError(() => new Error('Unauthorized: ' + error.status));
+                    case 403:
+                        return throwError(() => new Error('Forbidden: ' + error.status));
+                    case 500:
+                        return throwError(() => new Error('Internal Server Error: ' + error.status));
+                    default:
+                        return throwError(() => new Error('An error occurred: ' + error.status));
+                }
+            }),
+        );
+
+    }
 
 
 
@@ -192,7 +255,7 @@ export class ApiService {
 
     updatePerson(person: Person): Observable<void> {
         const headers = { 'content-type': 'application/json' };
-        const body = JSON.stringify({ name: person.name });
+        const body = JSON.stringify(person);
         const addr = this.baseURL + 'people/' + person.id;
         return this.http.put<void>(addr, body, { headers: headers }).pipe(
             catchError((error: HttpErrorResponse) => {

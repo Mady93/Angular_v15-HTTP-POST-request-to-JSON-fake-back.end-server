@@ -1,84 +1,72 @@
-th
-{
+/* th {
     width: auto;
 }
 
-td
-{
+td {
     text-align: center;
 }
 
-tr td:first-child input
-{
+tr td:first-child input {
     width: 20px
 }
 
-thead
-{
+thead {
     background: skyblue;
 }
 
-tbody tr
-{
+tbody tr {
     background: rgb(234, 247, 234);
 }
 
 
-tr:nth-child(2n)
-{
+tr:nth-child(2n) {
     background: rgb(220, 240, 220) !important;
 }
 
-table
-{
+table {
     width: 300px;
     border-collapse: collapse;
     box-shadow: 3px 3px 5px lightgray;
 }
 
 
-td input
-{
+td input {
     background: transparent;
     border: none;
 }
 
-.icon
-{
+.icon {
     width: 16px;
     height: 16px;
     cursor: pointer;
     margin: 5px;
 }
 
-.delete
-{
+.delete {
     background: url("https://cdn-icons-png.flaticon.com/512/3405/3405244.png") !important;
     background-size: cover !important;
 }
 
-.save
-{
+.save {
     background: url("https://icons.veryicon.com/png/o/miscellaneous/utility/save-44.png") !important;
     background-size: cover !important;
 }
 
-.side
-{
+.side {
     display: flex;
     position: relative;
 }
 
-#error
-{
+#error {
     border: 2px solid red;
     padding: 2px;
     height: 20px;
     margin-left: 20px;
     border-radius: 2px;
-    box-sizing:content-box;
+    box-sizing: content-box;
     box-shadow: 3px 3px 2px lightgray;
 }
+ */
 
 
 
@@ -86,31 +74,70 @@ td input
 
 
 
+ @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Satisfy&family=Source+Serif+Pro:ital,wght@1,300&display=swap');
 
+ h1 {
+     /*  font-family: 'Jacques Francois', serif;  */
+     font-weight: bold;
+     font-size: 40px;
+     font-family: 'Satisfy', cursive, 'Jacques Francois', serif;
+     /* font-family: 'Source Serif Pro', serif; */
+ }
 
-
-.is-invalid
-{
+.is-invalid {
     border: 2px solid rgb(211, 48, 48);
     background-color: #ffffff;
 }
 
-.is-valid
-{
+.is-valid {
     border: 2px solid rgb(0, 211, 46);
-    background-color:rgb(173, 223, 173);
+    background-color: rgb(173, 223, 173);
 }
 
-.error 
-{
+.error {
     color: rgb(0, 0, 0);
     border: 2px solid red;
     background-color: rgb(218, 199, 199);
     display: inline-block;
     margin-bottom: 10px;
-  }
+}
 
-  form
-  {
-        display: inline-block;
-  }
+form {
+    display: inline-block;
+}
+
+
+.my-2 {
+    float: right !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 13%;
+    margin-right: 2px;
+    position: relative;
+}
+
+.nav1{
+    margin-left: 50px; 
+}
+
+.nav2{
+    margin-left: 50px;
+}
+
+.nav3{
+    margin-left: 50px;
+}
+
+.my-0{
+    float: right !important;
+margin-top: 0 !important;
+margin-bottom: 0 !important;
+margin-left: 46%;
+margin-right: 2px;
+position: relative;
+}
+
+.d-flex{
+    background-color: rgb(240, 86, 86)!important;
+    color: white;
+}

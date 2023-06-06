@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+
+    <form class="w-25 p-3" #form="ngForm" (ngSubmit)="addPerson(form)" novalidate>
+
+
+        <div class="form-group">
+            
+            <input class="form-control" [(ngModel)]="person.firstname" id="firstname" name="firstname" #firstname="ngModel"
+                pattern="[a-zA-Z\s]+$" minlength="5" maxlength="25" placeholder="firstname"
+                [ngClass]="{'is-invalid': firstname.invalid && firstname.dirty,'is-valid': firstname.valid && firstname.dirty}"
+                required />
+        </div>
+
+        <div *ngIf="!firstname.valid && (firstname.dirty || firstname.touched)" [ngClass]="'error'">
+
+            <div *ngIf="firstname.errors['required'] && firstname.touched">
+                First Name is required!
+            </div>
+        
+            <div *ngIf="firstname.errors['minlength'] && firstname.touched">
+                First Name minimum lenghth is {{firstname.errors['minlength'].requiredLength}}
+            </div>
+        
+            <div *ngIf="firstname.errors['pattern'] && firstname.touched">
+                First Name pattern is {{firstname.errors['pattern'].requiredPattern}}
+                <br>
+                Enter letters from aA - zZ and white spaces!
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="form-group">
+            <input class="form-control" [(ngModel)]="person.lastname" id="lastname" name="lastname" #lastname="ngModel"
+                pattern="[a-zA-Z\s]+$" minlength="5" maxlength="25" placeholder="lastname"
+                [ngClass]="{'is-invalid': lastname.invalid && lastname.dirty,'is-valid': lastname.valid && lastname.dirty}"
+                required />
+        </div>
+
+        <div *ngIf="!lastname.valid && (lastname.dirty || lastname.touched)" [ngClass]="'error'">
+
+            <div *ngIf="lastname.errors['required'] && lastname.touched">
+                Last Name is required!
+            </div>
+        
+            <div *ngIf="lastname.errors['minlength'] && lastname.touched">
+                Last Name minimum lenghth is {{lastname.errors['minlength'].requiredLength}}
+            </div>
+        
+            <div *ngIf="lastname.errors['pattern'] && lastname.touched">
+                Last Name pattern is {{lastname.errors['pattern'].requiredPattern}}
+                <br>
+                Enter letters from aA - zZ and white spaces!
+            </div>
+        </div>
+        
+
+
+
+
+
+
+
+
+
+        <div class="form-group">
+            <input class="form-control" [(ngModel)]="person.email" id="email" name="email" #email="ngModel"
+                pattern="[a-z0-9._%+-]+@[a-z0-9-.]+.[a-z]{2,}$" maxlength="25" placeholder="email"
+                [ngClass]="{'is-invalid': email.invalid && email.dirty,'is-valid': email.valid && email.dirty}"
+                required />
+        </div>
+
+        <div *ngIf="!email.valid && (email.dirty || email.touched)" [ngClass]="'error'">
+
+            <div *ngIf="email.errors['required'] && email.touched">
+                Email is required!
+            </div>
+        
+        
+            <div *ngIf="email.errors['pattern'] && email.touched">
+                Email pattern is {{email.errors['pattern'].requiredPattern}}
+                <br>
+                Enter characters from
+                a-A to z-Z , special characters._%+- and number 0-9
+        
+            </div>
+        </div>
+
+
+        <div style="text-align: center;">
+            <button style="width: 100%;" type="submit" class="btn btn-primary">Add</button>
+        </div>
+        <div>
+            <button type="button" routerLink="/person-list">Back to list</button>
+        </div>
+        
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

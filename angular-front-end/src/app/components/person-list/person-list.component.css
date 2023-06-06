@@ -1,0 +1,44 @@
+
+
+
+thead
+{
+    background-color: #212529 !important;
+}
+
+
+th
+{
+    background-color: transparent;
+    color: white;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.add
+{
+    all: unset;
+    border: 1px solid lightgreen;
+    border-radius: 5px 0px 0px 5px;
+    padding: 3px;
+    background: #aefaae;
+    color: green;
+    width: 48px;
+    text-align: center;
+}
+
+
+.rem
+{
+    all: unset;
+    border: 1px solid salmon;
+    border-radius: 0px 5px 5px 0px;
+    padding: 3px;
+    background: rgb(245, 169, 169);
+    color: red;
+    width: 48px;
+    text-align: center;
+}

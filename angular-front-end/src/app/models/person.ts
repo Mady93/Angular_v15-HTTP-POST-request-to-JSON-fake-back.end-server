@@ -1,11 +1,15 @@
 export class Person {
     id: number;
-    name: string;
+    firstname: string;
+    lastname: string;
+    email: string;
 
-    constructor(){}
 
-   /* constructor(id: number, name: string) {
+    constructor(id: number, firstname: string, lastname: string, email: string) {
         this.id = id;
-        this.name = name;
-    }*/
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
+    
 }
