@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { ApiService } from 'src/app/services/api.service';
 
-
 @Component({
   selector: 'app-person-create',
   templateUrl: './person-create.component.html',
@@ -14,12 +13,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class PersonCreateComponent implements OnInit {
 
   person: Person;
-
   error: any;
-  
-  showModal: boolean = false;
 
-  constructor(private router: Router,private service: ApiService) { }
+  constructor(private router: Router, private service: ApiService) { }
 
   ngOnInit(): void {
     this.person = {
@@ -42,10 +38,9 @@ export class PersonCreateComponent implements OnInit {
           this.error = err;
         },
         complete: () => {
-
+          console.log('complete');
         }
       });
-
   }
 
 }

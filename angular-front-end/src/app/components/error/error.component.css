@@ -1,16 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Satisfy&family=Source+Serif+Pro:ital,wght@1,300&display=swap');
 
- p {
-     /*  font-family: 'Jacques Francois', serif;  */
-     font-weight: bold;
-     font-size: 40px;
-     font-family: 'Satisfy', cursive;
-     color: brown!important;
-     /* font-family: 'Source Serif Pro', serif; */
-     width: max-content;
- }
+p {
+    /* font-family: 'Source Serif Pro', serif; */
+    /* font-family: 'Satisfy', cursive; */
+    /* color: rgb(0, 132, 255) !important;
+    width: max-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15% !important;
+    font-size: 20px;
+    margin-top: 17%;
+    font-family: 'Jacques Francois', serif;
+    font-weight: bold; */
+    font-family: 'Jacques Francois', serif;
+    font-weight: bold;
+    color: rgb(0, 132, 255) !important;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: fit-content;
+    box-shadow: 0 0 60px 2px rgb(0, 132, 255);
+    width: fit-content;
+}
 
-.view {
+
+
+ .view {
     position: absolute;
     top: 0;
     left: 0;
@@ -37,13 +57,20 @@
 }
 
 .plane.main .circle {
-    width: 120px;
+/*  width: 120px;
     height: 120px;
     position: absolute;
     transform-style: preserve-3d;
     border-radius: 100%;
     box-sizing: border-box;
-    box-shadow: 0 0 60px rgba(220, 20, 60, 1), inset 0 0 60px rgba(220, 20, 60, 1);
+    box-shadow: 0 0 60px rgba(220, 20, 60, 1), inset 0 0 60px rgba(220, 20, 60, 1); */
+
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    transform-style: preserve-3d;
+    border-radius: 100%;
+    box-sizing: border-box;
 }
 
 .plane.main .circle::before,
@@ -59,10 +86,13 @@
     width: 10%;
     height: 10%;
     border-radius: 100%;
-    background: rgba(220, 20, 60, 1);
+    box-shadow: 0 0 60px 2px rgb(0, 132, 255);
+    background: rgb(20, 220, 203);
     box-sizing: border-box;
-    box-shadow: 0 0 60px 2px rgba(220, 20, 60, 1);
+/*     box-shadow: 0 0 60px 2px rgba(220, 20, 60, 1);
+      background: rgba(220, 20, 60, 1); */
 }
+
 
 .plane.main .circle::before {
     transform: translateZ(-90px);
@@ -92,7 +122,7 @@
     transform: rotateZ(calc(5 / 5 * 360deg)) rotateX(63.435deg);
 }
 
-@keyframes rotate {
+ @keyframes rotate {
     0% {
         transform: rotateX(0) rotateY(0) rotateZ(0);
     }
@@ -100,5 +130,34 @@
     100% {
         transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
     }
+}  
+
+
+
+
+
+
+
+
+
+.err {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-image: url("https://i.imgflip.com/42yakg.jpg");
+    background-size: cover;
+   
+
 }
 
+
+.err div {
+    position: absolute;
+    top: 122px;
+    left: 71%;
+    font-size: 128px;
+    font-weight: 600;
+    color: rgb(196, 10, 10)
+}

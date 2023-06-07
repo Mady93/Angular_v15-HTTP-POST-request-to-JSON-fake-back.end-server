@@ -13,13 +13,21 @@ export class ErrorComponent implements OnInit{
   isFirstLoad: boolean = true;
   isRefreshing: boolean = false;
 
+  errore = {
+    "error": {
+      "code": 404,
+      "message": "Http failure response for http://localhost:3000/people: 0 Unknown Error"
+    }
+  }
+
   constructor(private httpClient: HttpClient,private router: Router){
    
   }
 
-   counter(n: number): number[] {
+   /*  counter(n: number): number[] {
     return Array(n);
-  } 
+  }   */
+
 
    ngOnInit(): void {
       this.checkServerStatus();
@@ -36,6 +44,6 @@ export class ErrorComponent implements OnInit{
         
       }
     });
-  } 
+  }  
 
 }

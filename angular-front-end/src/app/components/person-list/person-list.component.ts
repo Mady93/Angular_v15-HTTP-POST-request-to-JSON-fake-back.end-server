@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Person } from 'src/app/models/person';
 import { HttpErrorResponse } from '@angular/common/http';
+
 @Component({
   selector: 'app-person-list',
   templateUrl: './person-list.component.html',
@@ -12,15 +13,11 @@ export class PersonListComponent implements OnInit {
   people: Person[] = [];
   error: any;
 
-  constructor(private service: ApiService) {
-
-  }
-
+  constructor(private service: ApiService) { }
 
   ngOnInit(): void {
     this.getPeople();
   }
-
 
   getPeople() {
     this.service.getPeople().subscribe({
@@ -40,6 +37,12 @@ export class PersonListComponent implements OnInit {
     this.service.deletePerson(id).subscribe({
       next: () => {
         this.getPeople();
+      },
+      error:(err:HttpErrorResponse)=>{
+        this.error = err;
+      },
+      complete:()=>{
+        console.log('complete');
       }
     })
   }

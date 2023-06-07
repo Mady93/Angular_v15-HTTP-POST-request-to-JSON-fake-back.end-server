@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, Htt
     from '@angular/common/http';
 
 import { Observable, of, throwError } from "rxjs";
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { Injectable } from '@angular/core';
 
@@ -13,7 +13,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
      intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log("intercepted\n");
-        const token: string = 'invald token';
+        //const token: string = 'invald token';
         //req = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) });
         return next.handle(req).pipe(
             catchError((error) => {
@@ -26,6 +26,11 @@ export class HttpInterceptorService implements HttpInterceptor {
                         console.log(`error status : ${error.status} ${error.statusText}`);
 
                         switch (error.status) {
+                            case 0:       //Unknown Error
+                                this.router.navigateByUrl("/error");
+                                console.log(`redirect to error`);
+                                handled = true;
+                                break;
                             case 404:      //Not found
                                 this.router.navigateByUrl("/error");
                                 console.log(`redirect to error`);
@@ -65,7 +70,5 @@ export class HttpInterceptorService implements HttpInterceptor {
             })
         );
     } 
-
-
 
 }

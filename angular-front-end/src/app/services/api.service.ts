@@ -12,9 +12,6 @@ export class ApiService {
 
     constructor(public http: HttpClient) { }
 
-    /* getPeople(): Observable<Person[]> {
-        return this.http.get<Person[]>(`${this.baseURL}people`);
-      } */
     getPeople(): Observable<Person[]> {
         return this.http.get<Person[]>(this.baseURL + 'people').pipe(
             catchError((err: HttpErrorResponse): Observable<Person[]> => {
@@ -35,9 +32,7 @@ export class ApiService {
         
     }
 
-
-    getPersonById(id: number): Observable<Person[]>
-    {
+    getPersonById(id: number): Observable<Person[]> {
         const headers = { 'content-type': 'application/json' };
         const params = new HttpParams().set("id", id);
         return this.http.get<Person[]>(this.baseURL + 'people', {headers: headers, params: params}).pipe(
@@ -69,6 +64,8 @@ export class ApiService {
         })
     } */
 
+
+
     //         Ascoltare gli eventi di avanzamento con { observe: 'events', reportProgress: true }
     /* addPerson(person: Person): Observable<any> {
         const headers = { 'content-type': 'application/json' }
@@ -79,6 +76,8 @@ export class ApiService {
         });
     } */
 
+
+
     //                      Risposta fortemente tipizzata
     /*  addPerson(person: Person): Observable<Person> {
       const headers = { 'content-type': 'application/json' }
@@ -86,6 +85,8 @@ export class ApiService {
       console.log(body)
       return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers })
   } */
+
+
 
     //                    Stringa come tipo di risposta
     /*  addPerson(person: Person): Observable<Person> {
@@ -96,6 +97,9 @@ export class ApiService {
             headers: headers, responseType: "text"
         });
     }  */
+
+
+
 
     /*      serializzazione dell'oggetto person in una stringa JSON nel corpo della richiesta 
             e la risposta JSON restituita dal server viene automaticamente interpretata come
@@ -110,60 +114,27 @@ export class ApiService {
    }  */
 
 
+
+
+
+
     //                             GESTIONE DEGLI ERRORI:
 
+    //                  manda l'errore al componente attraverso throwError
 
-    //                  manda l'errore al componente attraverso throw err
-
-    /*
-    addPerson(name: string): Observable<Person> {
-        const headers = { 'content-type': 'application/json' }
-        const body = JSON.stringify({ name: name });
-
-        if (name=="" || name==undefined || name==null)
-        {
-            return throwError(() => new HttpErrorResponse({status: 406, statusText: "campo vuoto"}));
-        }
-
-        return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers }).pipe(
-            catchError((error: HttpErrorResponse) => {
-                switch (error.status) {
-                    case 404:
-                        return throwError(() => new Error('User not found: ' + error.status));
-                    case 401:
-                        return throwError(() => new Error('Unauthorized: ' + error.status));
-                    case 403:
-                        return throwError(() => new Error('Forbidden: ' + error.status));
-                    case 500:
-                        return throwError(() => new Error('Internal Server Error: ' + error.status));
-                    default:
-                        return throwError(() => new Error('An error occurred: ' + error.status));
-                }
-            }),
-        );
-    };
-    */
-
-
-
+   
     /* sostituire Observable<Person> con Observable<void> */
-    addPerson(person: Person): Observable<Person>
-    {
-
+    addPerson(person: Person): Observable<Person> {
+    
         const headers = { 'content-type': 'application/json' }
         const body = JSON.stringify(person);
 
-        if (person.firstname=="" ||person.firstname==undefined || person.firstname==null 
-        || person.lastname=="" ||person.lastname==undefined || person.lastname==null 
-        || person.email=="" ||person.email==undefined || person.email==null)
+        if (person.firstname == "" ||person.firstname == undefined || person.firstname ==  null 
+        || person.lastname == "" || person.lastname == undefined || person.lastname == null 
+        || person.email == "" || person.email == undefined || person.email == null) 
         {
             return throwError(() => new HttpErrorResponse({status: 406, statusText: "Not Acceptable"}));
         }
-
-
-
-
-
 
         return this.http.post<Person>(this.baseURL + 'people', body, { 'headers': headers }).pipe(
             catchError((error: HttpErrorResponse) => {
@@ -183,9 +154,6 @@ export class ApiService {
         );
 
     }
-
-
-
 
 
 
@@ -208,6 +176,9 @@ export class ApiService {
     }
  */
 
+
+
+
     /*                                        Query param:
     Invia una richiesta GET all'URL http://localhost:3000/people?id=person.id&name=person.name*/
     /*     addPerson(person: Person): Observable<Person> {
@@ -222,6 +193,9 @@ export class ApiService {
                 'params': params
             });
         } */
+
+
+
 
     /*                       Query param modo alternativo:
     Invia una richiesta GET all'URL http://localhost:3000/people?id=person.id&name=person.name*/
