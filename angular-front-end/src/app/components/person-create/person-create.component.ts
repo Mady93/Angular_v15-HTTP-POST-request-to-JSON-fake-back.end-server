@@ -27,12 +27,15 @@ export class PersonCreateComponent implements OnInit {
   }
 
   addPerson(form: NgForm) {
+    
+    if (form.invalid)
+      return;
 
     this.service.addPerson(form.value)
       .subscribe({
         next: () => {
           form.reset();
-          /* this.router.navigate(["/person-list"]); */
+          this.router.navigate(["/person-list"]);
         },
         error: (err: HttpErrorResponse) => {
           this.error = err;
